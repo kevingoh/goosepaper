@@ -14,7 +14,7 @@ import requests
 from .styles import Styles
 
 
-def htmlize(text: str) -> str:
+def htmlize(text):
     """
     Generate HTML text from a text string, correctly formatting paragraphs etc.
     """
@@ -27,13 +27,13 @@ def htmlize(text: str) -> str:
     return f"<p>{text}</p>"
 
 
-def clean_html(html: str) -> str:
+def clean_html(html):
     html = html.replace("â€TM", "'")
     html = re.sub("http[s]?:\/\/[^\s\"']+", "", html)
     return html
 
 
-def clean_text(text: str) -> str:
+def clean_text(text):
     text = text.replace("â€TM", "'")
     text = re.sub("http[s]?:\/\/[^\s\"']+", "", text)
     return text
