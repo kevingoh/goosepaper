@@ -14,7 +14,7 @@ import requests
 from .styles import Styles
 
 
-def htmlize(text):
+def htmlize(text: str) -> str:
     """
     Generate HTML text from a text string, correctly formatting paragraphs etc.
     """
@@ -27,13 +27,13 @@ def htmlize(text):
     return f"<p>{text}</p>"
 
 
-def clean_html(html):
+def clean_html(html: str) -> str:
     html = html.replace("â€TM", "'")
     html = re.sub("http[s]?:\/\/[^\s\"']+", "", html)
     return html
 
 
-def clean_text(text):
+def clean_text(text: str) -> str:
     text = text.replace("â€TM", "'")
     text = re.sub("http[s]?:\/\/[^\s\"']+", "", text)
     return text
@@ -286,11 +286,16 @@ class RSSFeedStoryProvider(StoryProvider):
         self.feed_url = rss_path
 
     def get_stories(self, limit: int = 5) -> List[Story]:
-        limit = min(self.limit, limit)
         feed = feedparser.parse(self.feed_url)
+        limit = min(self.limit, len(feed.entries) )
         stories = []
         for entry in feed.entries[:limit]:
-            html = entry.content[0]["value"]
+            if "content" in entry:
+            	html = entry.content[0]["value"]
+            elif "summary_detail" in entry: 
+                html = entry.summary_detail["value"]
+            else:
+                html = entry.summary
             html = clean_html(html)
             if len(entry.media_content):
                 src = entry.media_content[0]["url"]

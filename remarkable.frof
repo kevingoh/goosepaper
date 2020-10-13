@@ -1,7 +1,7 @@
 provision -> generate -> convert -> upload -> cleanup
 
 
-provision: rm -rf ./temp; mkdir temp
+provision: rm -rf ./temp/; mkdir temp
 
 generate: python3 main.py > temp/daily.html
 

@@ -13,10 +13,11 @@ from goosepaper import (
 print(
     Goosepaper(
         [
-            WikipediaCurrentEventsStoryProvider(),
-            WeatherStoryProvider(woe="2358820"),
-            RSSFeedStoryProvider("https://www.statnews.com/feed/", limit=5),
-            RSSFeedStoryProvider("https://www.npr.org/feed/", limit=5),
+            #WikipediaCurrentEventsStoryProvider(),
+            WeatherStoryProvider(woe="551801"),
+            RSSFeedStoryProvider("https://www.thestar.com.my/rss/News/", limit=20),
+            RSSFeedStoryProvider("https://www.thestar.com.my/rss/Business", limit=20),
+            
             #MultiTwitterStoryProvider(
             #    ["reuters", "bbcWorld", "axios", "BethanyAllenEbr", "NPR"], limit_per=5
             #),
